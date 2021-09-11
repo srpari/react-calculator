@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import App from "./App";
+import App from "../App";
 
 // test("renders learn react link", () => {
 //   render(<App />);
@@ -7,7 +7,7 @@ import App from "./App";
 //   expect(linkElement).toBeInTheDocument();
 // });
 
-test("renders heading", () => {
+test("App renders correctly", () => {
   const wrapper = render(<App />);
   const welcome = wrapper.getByText("React-Calculator");
   expect(welcome).toBeDefined;

@@ -16,7 +16,7 @@ export const Reducer = (state = "", action) => {
     case "clear":
       return action.payload;
     case "sqrt":
-      return calculateExp(state) * calculateExp(state);
+      return state.concat(calculateExp(state) * calculateExp(state));
     default:
       return state;
   }
