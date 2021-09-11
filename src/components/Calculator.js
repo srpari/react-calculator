@@ -96,7 +96,13 @@ function Calculator() {
             +
           </button>
 
-          <button type="button" className="operator" value="sqrt" id="sqrt">
+          <button
+            type="button"
+            className="operator"
+            value="sqrt"
+            id="sqrt"
+            onClick={() => dispatch({ type: "sqrt" })}
+          >
             &#8730;
           </button>
 

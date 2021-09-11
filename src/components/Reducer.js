@@ -5,11 +5,8 @@ export const Reducer = (state = "", action) => {
       const value = action.payload;
       if (value === "." && state.includes(".")) return state;
       return state.concat(action.payload);
-
-    //   return { ...state, expression: state.expression + action.payload };
     case "result":
       try {
-        // return eval(state).toString();
         return calculateExp(state).toString();
       } catch (error) {
         return "Error";
@@ -18,9 +15,8 @@ export const Reducer = (state = "", action) => {
       return state.slice(0, state.length - 1);
     case "clear":
       return action.payload;
-
-    case "err":
-      return action.payload;
+    case "sqrt":
+      return calculateExp(state) * calculateExp(state);
     default:
       return state;
   }
@@ -60,7 +56,13 @@ const calculateExp = (s) => {
       ops.pop();
     }
     // Current token is an operator.
-    else if (s[i] === "+" || s[i] === "-" || s[i] === "*" || s[i] === "/") {
+    else if (
+      s[i] === "+" ||
+      s[i] === "-" ||
+      s[i] === "*" ||
+      s[i] === "/" ||
+      s[i] === "^"
+    ) {
       // While top of 'ops' has same or greater precedence to current
       // token, which is an operator. Apply operator on top of 'ops'
       // to top two elements in values stack
@@ -88,7 +90,10 @@ const hasPrecedence = (op1, op2) => {
   if (op2 === "(" || op2 === ")") {
     return false;
   }
-  if ((op1 === "*" || op1 === "/") && (op2 === "+" || op2 === "-")) {
+  if (
+    (op1 === "*" || op1 === "/" || op1 === "^") &&
+    (op2 === "+" || op2 === "-")
+  ) {
     return false;
   }
   return true;
@@ -109,6 +114,8 @@ const applyOp = (op, b, a) => {
         throw "Cannot divide by zero";
       }
       return Math.floor(a / b);
+    case "^":
+      return Math.pow(a, b);
   }
   return "Error";
 };
