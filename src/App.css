@@ -61,14 +61,14 @@ button:hover {
   background: #f5c77d;
 }
 
-.all-clear {
+.clear {
   background: #f17377;
   border: none;
   color: #fff;
   grid-column: 1 / span 2;
 }
 
-.all-clear:hover {
+.clear:hover {
   background: #ff878b;
 }
 
