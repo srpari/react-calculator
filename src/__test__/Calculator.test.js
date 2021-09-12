@@ -1,7 +1,8 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import Calculator from "../components/Calculator";
+import { calculateExp } from "../components/Reducer";
 
 describe("Calculator", () => {
   test("Renders all buttons", () => {
@@ -30,6 +31,8 @@ describe("Calculator", () => {
     const decimalButton = component.getByText(".");
     const zeroButton = component.getByText("0");
     const delButton = component.getByText("<");
+
+    //assert
     expect(clearButton).toBeDefined();
     expect(equalsButton).toBeDefined();
 
@@ -54,21 +57,49 @@ describe("Calculator", () => {
     expect(zeroButton).toBeDefined();
     expect(delButton).toBeDefined();
   });
+});
 
-  test("resets when C is clicked", () => {
-    const component = render(<Calculator />);
+describe("Calculator tests", () => {
+  // const component = render(<Calculator />);
+  test("Adding 1 + 2 should return 3", () => {
+    // arrange and act
+    var result = calculateExp("1 + 3");
+    // assert
+    expect(result).toBe(4);
+  });
 
-    const calculatorDisplay = component.getAllByText("0")[0];
+  test("Subtraction 160 - 40 should return 120", () => {
+    // arrange and act
+    var result = calculateExp("100 - 40");
+    // assert
+    expect(result).toBe(60);
+  });
 
-    const sevenButton = component.getByText("7");
-    const clearButton = component.getByText("C");
+  test("Subtraction 100 - 120 should return -20", () => {
+    // arrange and act
+    var result = calculateExp("100 - 120");
+    // assert
+    expect(result).toBe(-20);
+  });
 
-    fireEvent.click(sevenButton);
+  test("Multiply 6 * 4 should return 24", () => {
+    // arrange and act
+    var result = calculateExp("6 * 4");
+    // assert
+    expect(result).toBe(24);
+  });
 
-    expect(calculatorDisplay).toHaveTextContent("7");
+  test("Divide 125 / 5 should return 25", () => {
+    // arrange and act
+    var result = calculateExp("125 / 5");
+    // assert
+    expect(result).toBe(25);
+  });
 
-    fireEvent.click(clearButton);
-
-    expect(calculatorDisplay).toHaveTextContent("0");
+  test("With parentheses (125 / 5)+3 should return 28", () => {
+    // arrange and act
+    var result = calculateExp("(125 / 5)+3");
+    // assert
+    expect(result).toBe(28);
   });
 });

@@ -4,11 +4,13 @@ import { Reducer } from "./Reducer";
 const initialState = "";
 
 function Calculator() {
+  // defined reducer function
   const [state, dispatch] = useReducer(Reducer, initialState);
 
   return (
     <div className="calculator-bg">
       <div className="calculator">
+        {/* Input box which accepts the value and displays the result */}
         <input
           type="text"
           id="display"
@@ -17,6 +19,8 @@ function Calculator() {
           value={state}
           disabled
         />
+        {/* Calculator keys */}
+        {/* onClick event dispatches the action ( type ,payload ) to Reducer function */}
         <div className="calculator-keys">
           <button
             type="button"

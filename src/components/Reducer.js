@@ -3,19 +3,20 @@ export const Reducer = (state = "", action) => {
     case "expression":
       // eslint-disable-next-line no-case-declarations
       const value = action.payload;
+      // Check for the valid decimal number
       if (value === "." && state.includes(".")) return state;
       return state.concat(action.payload);
-    case "result":
+    case "result": // Manupulates the state - strExp
       try {
         return calculateExp(state).toString();
       } catch (error) {
         return "Error";
       }
-    case "del":
+    case "del": // Delete opreration - removes the last entered value
       return state.slice(0, state.length - 1);
-    case "clear":
+    case "clear": // Clear opration - clear all values in the display
       return action.payload;
-    case "sqrt":
+    case "sqrt": // Square root operation
       return state.concat(calculateExp(state) * calculateExp(state));
     default:
       return state;
