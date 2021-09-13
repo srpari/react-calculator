@@ -26,5 +26,9 @@ Evaluated the expression without using eval().
 Unit test has been written using Jest.
 
 ### Test Results
+![Alt text](https://user-images.githubusercontent.com/45130066/133010285-e726019b-29ca-41a0-8102-e4ead8d9a220.png)
+
 
 ### Output -- Screen Shot
+![Alt text](https://user-images.githubusercontent.com/45130066/133010349-73cd52b7-df84-4715-b3dc-04b88c951f3e.png)
+
